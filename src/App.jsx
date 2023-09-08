@@ -17,7 +17,7 @@ const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<h1>Error</h1>}>
       <Route path="*" element={<NotFound />} />
-      <Route path="/" element={<Form />}>
+      <Route path="/attendancesystem" element={<Form />}>
         <Route index element={<Register />} />
         <Route path="login" element={<Login />} />
       </Route>
