@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Scrolling</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="child"></div>
+    </div>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 500px;
+        height: 500px;
+        border: 1px solid green;
+      }
+      .container .child {
+        width: calc(500px / 2);
+        height: calc(500px / 2);
+        background-color: blueviolet;
+      }
+    </style>
+  </body>
+  <script>
+    async function promise() {
+      const retu = (await 1) + 1;
+      const bro = await retu;
+      return bro;
+    }
+    (async () => {
+      const result = await promise();
+      console.log(result);
+    })();
+  </script>
+</html>
