@@ -11,7 +11,6 @@ function Register() {
   // });
   const { infoRegister, setInfoRegister, setOfficialAccount, addAccount } =
     useGlobalContext();
-  const [successfulSignedIn, setSuccessfulSignedIn] = useState("");
   const [alreadySignIn, setAlreadySignIn] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -116,15 +115,10 @@ function Register() {
     }
     addAccount(infoRegister);
     setAlreadySignIn("");
-    setSuccessfulSignedIn("You successfully created an account");
     localStorage.setItem("infoRegister", JSON.stringify(infoRegister));
     setOfficialAccount(JSON.parse(localStorage.getItem("infoRegister")));
-    navigate("/login");
-    setTimeout(() => {
-      setSuccessfulSignedIn("");
-    }, 1000);
+    navigate("/attendancesystem/login");
   }
-  localStorage.clear();
   return (
     <div>
       <form
@@ -136,11 +130,6 @@ function Register() {
           <h1 className="text-[#EEBA2C] font-poppins text-2xl">Register</h1>
           {alreadySignIn && (
             <p className="text-red-500 font-poppins text-sm">{alreadySignIn}</p>
-          )}
-          {successfulSignedIn && (
-            <p className="text-sm font-poppins text-green-500">
-              {successfulSignedIn}
-            </p>
           )}
         </div>
         <div>
@@ -273,7 +262,7 @@ function Register() {
             Already have an account?
           </h4>
           <Link
-            to="/login"
+            to="login"
             className="text-[#EEBA2C] underline underline-offset-2 text-sm font-poppins"
           >
             Click here

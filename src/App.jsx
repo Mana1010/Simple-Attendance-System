@@ -15,7 +15,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route errorElement={<h1>Error</h1>}>
+    <Route path="/attendancesystem" errorElement={<h1>Error</h1>}>
       <Route path="*" element={<NotFound />} />
       <Route path="/attendancesystem" element={<Form />}>
         <Route index element={<Register />} />

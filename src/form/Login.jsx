@@ -35,7 +35,7 @@ function Login() {
       setIncorrectCredentials("Incorrect Username or Password");
     } else {
       setIncorrectCredentials("");
-      navigate("/error");
+      navigate("/attendancesystem/error");
     }
   }
   return (
@@ -94,7 +94,7 @@ function Login() {
             Don't have an account yet?
           </h1>
           <Link
-            to="/"
+            to="/attendancesystem"
             className="text-[#EEBA2C] underline underline-offset-2 text-sm font-poppins"
           >
             Sign Up Here
