@@ -15,6 +15,11 @@ export function ContextProvider({ children }) {
   const [officialAccount, setOfficialAccount] = useState(
     JSON.parse(localStorage.getItem("infoRegister"))
   );
+  //For Edit
+  const [profile, setProfile] = useState({
+    img: {},
+    id: nanoid(),
+  });
   async function addAccount(data) {
     try {
       await axios.post("http://localhost:3000/accounts", {
@@ -24,6 +29,12 @@ export function ContextProvider({ children }) {
       });
     } catch (err) {}
   }
+  // function customizeProfile(image, ids) {
+  //   setProfile({
+  //     img: image,
+  //     id: ids,
+  //   });
+  // }
   return (
     <Context.Provider
       value={{

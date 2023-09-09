@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <div className="flex">
+    <div className="flex w-screen h-screen">
       <Sidebar />
       <Outlet />
     </div>

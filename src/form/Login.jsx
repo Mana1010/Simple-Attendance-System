@@ -35,7 +35,7 @@ function Login() {
       setIncorrectCredentials("Incorrect Username or Password");
     } else {
       setIncorrectCredentials("");
-      navigate("/attendancesystem/error");
+      navigate("/attendancesystem/pages");
     }
   }
   return (
