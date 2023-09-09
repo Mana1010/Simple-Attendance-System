@@ -15,6 +15,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import EditProfile from "./components/EditProfile";
+import Attendance from "./pages/Attendance";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/attendancesystem" errorElement={<h1>Error</h1>}>
@@ -27,6 +28,7 @@ const routes = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="edit-your-profile" element={<EditProfile />} />
+        <Route path="attendance" element={<Attendance/>}/>
       </Route>
     </Route>
   )

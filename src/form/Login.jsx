@@ -29,14 +29,17 @@ function Login() {
   }
   function submitLogin(e) {
     const parseData = JSON.parse(localStorage.getItem("infoRegister"));
-    console.log(officialAccount.username === parseData.username);
     e.preventDefault();
+    if (localStorage.getItem("infoRegister") === null) {
+      setIncorrectCredentials("This account doesn't exist");
+      return;
+    }
     if (username !== parseData?.username || password !== parseData?.password) {
       setIncorrectCredentials("Incorrect Username or Password");
-    } else {
-      setIncorrectCredentials("");
-      navigate("/attendancesystem/pages");
+      return;
     }
+    setIncorrectCredentials("");
+    navigate("/attendancesystem/pages");
   }
   return (
     <div>

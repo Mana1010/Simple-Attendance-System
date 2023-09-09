@@ -1,7 +1,9 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import tao from "./images/girl.png";
+import { useGlobalContext } from "../context/context";
 function Sidebar() {
+  const { profile, setProfile } = useGlobalContext();
   const [hideSidebar, setHideSidebar] = useState(false);
   const location = useLocation();
   const styled = {
@@ -35,8 +37,11 @@ function Sidebar() {
         style={styled}
         className="w-full flex flex-col items-center justify-center pt-4 space-y-2"
       >
-        <div className="w-1/2 rounded-full border border-[#EEBA2C] overflow-hidden bg-fuchsia-400">
-          <img src={tao} className="w-full" />
+        <div
+          className="w-1/2 rounded-full border border-[#EEBA2C] overflow-hidden bg-white"
+          key={profile.id}
+        >
+          <img src={profile.img} className="w-full" />
         </div>
         <Link
           to="edit-your-profile"
@@ -44,6 +49,14 @@ function Sidebar() {
         >
           Change Profile
         </Link>
+      </div>
+      <div style={styled}>
+        <h1 className="text-white font-poppins text-sm text-center">
+          Welcome,{" "}
+          <span className="text-[#EEBA2C]">
+            {JSON.parse(localStorage.getItem("infoRegister")).username}
+          </span>
+        </h1>
       </div>
       <nav style={styled} className="pt-9">
         <ul className="flex w-full flex-col space-y-4 md:space-y-0">
@@ -73,7 +86,10 @@ function Sidebar() {
           </NavLink>
           <NavLink
             to="attendance"
-            className={`text-white text-md md:p-3 flex items-center`}
+            className={`text-white text-md md:p-3 flex items-center ${
+              location.pathname === "/attendancesystem/pages/attendance" &&
+              "bg-yellow-500 rounded-md"
+            }`}
           >
             <span className="pr-2">
               <ion-icon name="person-add-outline"></ion-icon>
@@ -105,7 +121,8 @@ function Sidebar() {
         className="text-white flex flex-col justify-center items-center w-full space-y-2"
       >
         <Link
-          to="/"
+          to=".."
+          onClick={() => localStorage.clear()}
           className="w-full md:py-2 text-center md:w-full bg-[#26272C] text-[#EEBA2C] font-poppins"
         >
           Delete Account

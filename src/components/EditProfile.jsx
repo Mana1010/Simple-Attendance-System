@@ -1,46 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import girl from "./images/girl.png";
-import boy from "./images/boy.png";
-import head from "./images/head.png";
-import baby from "./images/baby.png";
-import anonymous from "./images/anonymous.png";
-import avatar from "./images/avatar.png";
 import { nanoid } from "nanoid";
+import { useGlobalContext } from "../context/context";
 function EditProfile() {
-  const pictures = [
-    {
-      img: girl,
-      id: nanoid(),
-      select: false,
-    },
-    {
-      img: boy,
-      id: nanoid(),
-      select: false,
-    },
-    {
-      img: head,
-      id: nanoid(),
-      select: false,
-    },
-    {
-      img: baby,
-      id: nanoid(),
-      select: false,
-    },
-    {
-      img: anonymous,
-      id: nanoid(),
-      select: false,
-    },
-    {
-      img: avatar,
-      id: nanoid(),
-      select: false,
-    },
-  ];
-  const [pictured, setPictures] = useState(pictures);
+  const { customizeProfile, pictured, setPictures } = useGlobalContext();
   const user = JSON.parse(localStorage.getItem("infoRegister"));
   const filteredProfile = (id) => {
     setPictures((pic) =>
@@ -51,6 +14,7 @@ function EditProfile() {
       )
     );
   };
+  const saveChange = pictured.find((pics) => pics.select === true);
   //for button save changes
   const saveChanges = pictured.some((pics) => pics.select === true);
   return (
@@ -84,6 +48,7 @@ function EditProfile() {
             Cancel
           </Link>
           <Link
+            onClick={() => customizeProfile(saveChange.img, saveChange.id)}
             to={saveChanges ? ".." : "."}
             className={`px-4 py-2 rounded-sm font-poppins ${
               saveChanges ? "bg-yellow-300" : "bg-slate-400"

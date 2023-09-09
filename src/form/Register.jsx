@@ -119,7 +119,6 @@ function Register() {
     setOfficialAccount(JSON.parse(localStorage.getItem("infoRegister")));
     navigate("/attendancesystem/login");
   }
-  // localStorage.clear();
   return (
     <div>
       <form
