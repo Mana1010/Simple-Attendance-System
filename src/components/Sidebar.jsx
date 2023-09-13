@@ -18,7 +18,7 @@ function Sidebar() {
     >
       <button
         onClick={() => setHideSidebar((prev) => !prev)}
-        className={`absolute right-[-15px] text-4xl text-[#EEBA2C] bg-slate-600 rounded-full flex items-center animate-pulse hover:animate-none transition-transform duration-150 ease-in ${
+        className={`absolute right-[-15px] z-[1px] text-4xl text-[#EEBA2C] bg-slate-600 rounded-full flex items-center animate-pulse hover:animate-none transition-transform duration-150 ease-in ${
           hideSidebar ? "rotate-180" : "rotate-0"
         }`}
       >
@@ -54,7 +54,7 @@ function Sidebar() {
         <h1 className="text-white font-poppins text-sm text-center">
           Welcome,{" "}
           <span className="text-[#EEBA2C]">
-            {JSON.parse(localStorage.getItem("infoRegister")).username}
+            {JSON.parse(localStorage.getItem("infoRegister"))?.username}
           </span>
         </h1>
       </div>
@@ -96,7 +96,7 @@ function Sidebar() {
             </span>
             Attendance
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="record"
             className={`text-white text-md md:p-3 flex items-center`}
           >
@@ -104,7 +104,7 @@ function Sidebar() {
               <ion-icon name="stats-chart-outline"></ion-icon>
             </span>
             Records
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="history"
             className={`text-white text-md md:p-3 flex items-center`}
