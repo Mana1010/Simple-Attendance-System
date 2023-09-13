@@ -17,6 +17,7 @@ import About from "./pages/About";
 import EditProfile from "./components/EditProfile";
 import Attendance from "./pages/Attendance";
 import Error from "./pages/Error";
+import DeleteHistory from "./pages/DeleteHistory";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/attendancesystem" errorElement={<Error />}>
@@ -30,6 +31,7 @@ const routes = createBrowserRouter(
         <Route path="about" element={<About />} />
         <Route path="edit-your-profile" element={<EditProfile />} />
         <Route path="attendance" element={<Attendance />} />
+        <Route path="delete-history" element={<DeleteHistory />} />
       </Route>
     </Route>
   )

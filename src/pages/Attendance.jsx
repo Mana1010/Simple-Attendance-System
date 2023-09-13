@@ -15,10 +15,9 @@ function Attendance() {
     attendanceList,
     deleteAttendance,
     specificEditFunc,
-    updateTimeOutAttendance,
     specificTimeOutFunc,
-    // specificTimeOutForm,
-    // setSpecificTimeOutForm,
+    listTimeOut,
+    deleteHistory,
   } = useGlobalContext();
   const [showForm, setShowForm] = useState(false);
   const [attendanceFormNotification, setAttendanceFormNotification] =
@@ -49,6 +48,9 @@ function Attendance() {
             <h1 className="text-blue-500 font-poppins text-lg font-bold">
               Total Time Out
             </h1>
+            <h1 className="text-center pt-[2.8rem] text-white font-poppins text-2xl">
+              {listTimeOut.length}
+            </h1>
             <div className="absolute left-[-10px] bottom-[-10px] w-1/2">
               <img src={timeout} alt="Time out" />
             </div>
@@ -56,6 +58,9 @@ function Attendance() {
           <div className="bg-[#3B3E3F] w-[300px] h-[200px] py-1.5 px-2.5 rounded-sm relative">
             <h1 className="text-[#DB3545] font-poppins text-lg font-bold">
               Total Deleted User
+            </h1>
+            <h1 className="text-center pt-[2.8rem] text-white font-poppins text-2xl">
+              {deleteHistory.length}
             </h1>
             <div className="absolute left-0 bottom-[-3px] w-1/2">
               <img src={deleted} alt="Deleted" />

@@ -96,18 +96,12 @@ function Sidebar() {
             </span>
             Attendance
           </NavLink>
-          {/* <NavLink
-            to="record"
-            className={`text-white text-md md:p-3 flex items-center`}
-          >
-            <span className="pr-2">
-              <ion-icon name="stats-chart-outline"></ion-icon>
-            </span>
-            Records
-          </NavLink> */}
           <NavLink
-            to="history"
-            className={`text-white text-md md:p-3 flex items-center`}
+            to="delete-history"
+            className={`text-white text-md md:p-3 flex items-center  ${
+              location.pathname === "/attendancesystem/pages/delete-history" &&
+              "bg-yellow-500 rounded-md"
+            }`}
           >
             <span className="pr-2">
               <ion-icon name="trash-outline"></ion-icon>

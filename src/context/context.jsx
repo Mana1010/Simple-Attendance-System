@@ -81,6 +81,19 @@ export function ContextProvider({ children }) {
 
   const [specificEditForm, setSpecificEditForm] = useState();
   const [specificTimeOutForm, setSpecificTimeOutForm] = useState();
+  const [listTimeOut, setListTimeOut] = useState(
+    JSON.parse(localStorage.getItem("listTimeOut")) || []
+  );
+  const [deleteHistory, setDeleteHistory] = useState(
+    JSON.parse(localStorage.getItem("deleteHistory")) || []
+  );
+
+  async function deleteItems(id) {
+    const filteredItem = attendanceList.find(
+      (attendance) => attendance.id === id
+    );
+    setDeleteHistory([...deleteHistory, filteredItem]);
+  }
   async function specificEditFunc(id) {
     const filtered = attendanceList.find((attendance) => attendance.id === id);
     setSpecificEditForm(filtered);
@@ -93,6 +106,7 @@ export function ContextProvider({ children }) {
         forTimeIn.second
       }`,
     });
+    setListTimeOut([...listTimeOut, findAttendance]);
   }
   async function attendanceListed() {
     const request = await axios.get("http://localhost:8000/attendance");
@@ -117,6 +131,7 @@ export function ContextProvider({ children }) {
     try {
       await axios.delete(`http://localhost:8000/attendance/${id}`);
       await removeLocalStorageAttendance(id);
+      await deleteItems(id);
       await attendanceListed();
     } catch (err) {
       throw new Error("Failed to Delete");
@@ -142,7 +157,7 @@ export function ContextProvider({ children }) {
       try {
         await axios.put(
           `http://localhost:8000/attendance/${id}`,
-          specificTimeOutFunc,
+          specificTimeOutForm,
           {
             headers: { "Content-Type": "application/json" },
           }
@@ -176,6 +191,12 @@ export function ContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("attendanceList", JSON.stringify(attendanceList));
   }, [attendanceList]);
+  useEffect(() => {
+    localStorage.setItem("listTimeOut", JSON.stringify(listTimeOut));
+  }, [listTimeOut]);
+  useEffect(() => {
+    localStorage.setItem("deleteHistory", JSON.stringify(deleteHistory));
+  }, [deleteHistory]);
   return (
     <Context.Provider
       value={{
@@ -201,6 +222,8 @@ export function ContextProvider({ children }) {
         specificTimeOutFunc,
         specificTimeOutForm,
         setSpecificTimeOutForm,
+        listTimeOut,
+        deleteHistory,
       }}
     >
       {children}
